@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "442621728619",
+    "firebase_url": "https://efficiently-productive.firebaseio.com",
+    "project_id": "efficiently-productive",
+    "storage_bucket": "efficiently-productive.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:442621728619:android:0bbd263410474428",
+        "android_client_info": {
+          "package_name": "com.kmh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "442621728619-45t5o9oi43kbp433d0d5t0e7luk31nji.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "442621728619-45t5o9oi43kbp433d0d5t0e7luk31nji.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOdYRDc-6aBTrUn6IpVrJ-bK9wMDKDdn8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
