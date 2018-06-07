@@ -1,8 +1,9 @@
 import React from 'react'
-import { StyleSheet, Platform, Image, Text, View, Button } from 'react-native'
+import { StyleSheet, Platform, Image, Text, View, TouchableOpacity } from 'react-native'
 import firebase from 'react-native-firebase'
+import MyToolBar from './Components/Header'
+import { Button, Icon } from 'react-native-elements'
 
-import { SwitchNavigator } from 'react-navigation'
 
 export default class Main extends React.Component {
     state = { currentUser: null };
@@ -16,26 +17,36 @@ export default class Main extends React.Component {
     render() {
         const { currentUser } = this.state;
         return (
-            <View style={styles.container}>
+            <View>
+                <MyToolBar/>
                 <Text>
                     Hi {currentUser && currentUser.email}!
                 </Text>
                 <Button
+                    raised
+                    icon={{name: 'cached'}}
+                    title='RAISED WITH ICON' />
+                <Button
+                    icon={
+                        {
+                            name : 'plus',
+                            size : 15,
+                            color : 'black',
+                            type :'font-awesome',
+                        }
+
+                    }
                     onPress = {() => this.props.navigation.navigate('AddActivity')}
                     title={"Add Activity"}
-
                 />
-                <Button
-                    onPress = {() => this.props.navigation.navigate('Earn')}
-                    title={"Earn EP"}
-
-                />
+                <TouchableOpacity style={styles.button}
+                    onPress = {() => this.props.navigation.navigate('Earn')}>
+                    <Text>Earn EP</Text>
+                </TouchableOpacity>
                 <Button
                     onPress = {() => this.props.navigation.navigate('History')}
                     title={"History"}
-
                 />
-
             </View>
         )
     }
@@ -44,7 +55,11 @@ export default class Main extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    button: {
+        width : 300
     }
 })
