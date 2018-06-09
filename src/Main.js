@@ -18,35 +18,49 @@ export default class Main extends React.Component {
         const { currentUser } = this.state;
         return (
             <View>
-                <MyToolBar/>
+                <MyToolBar />
+                <View style={styles.button}>
                 <Text>
                     Hi {currentUser && currentUser.email}!
                 </Text>
-                <Button
-                    raised
-                    icon={{name: 'cached'}}
-                    title='RAISED WITH ICON' />
-                <Button
-                    icon={
-                        {
-                            name : 'plus',
-                            size : 15,
-                            color : 'black',
-                            type :'font-awesome',
-                        }
 
-                    }
-                    onPress = {() => this.props.navigation.navigate('AddActivity')}
-                    title={"Add Activity"}
-                />
-                <TouchableOpacity style={styles.button}
-                    onPress = {() => this.props.navigation.navigate('Earn')}>
-                    <Text>Earn EP</Text>
-                </TouchableOpacity>
-                <Button
-                    onPress = {() => this.props.navigation.navigate('History')}
-                    title={"History"}
-                />
+                    <Button
+                        icon = {
+                            {
+                                name : 'plus',
+                                size : 15,
+                                color : 'black',
+                                type :'font-awesome',
+                            }
+                        }
+                        onPress = {() => this.props.navigation.navigate('AddActivity')}
+                        title={"Add Activity"}
+                    />
+                    <Button
+                        icon = {
+                            {
+                                name : 'money',
+                                size : 15,
+                                color : 'green',
+                                type : 'font-awesome'
+                            }
+                        }
+                        onPress = {() => this.props.navigation.navigate('Earn')}
+                        title = {"Earn"}
+                    />
+                    <Button
+                        icon = {
+                            {
+                                name : 'history',
+                                size : 15,
+                                color : 'black',
+                                type : 'font-awesome'
+                            }
+                        }
+                        onPress = {() => this.props.navigation.navigate('History')}
+                        title={"History"}
+                    />
+                </View>
             </View>
         )
     }
@@ -60,6 +74,9 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     button: {
-        width : 300
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+
     }
 })
