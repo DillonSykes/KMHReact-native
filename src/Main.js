@@ -5,7 +5,7 @@ import MyToolBar from './Components/Header'
 import HeaderIcon from './Components/HeaderIcon'
 import { Button, Icon, Text, Container, Content } from 'native-base'
 
-
+let activities = [];
 export default class Main extends React.Component {
     state = { currentUser: null };
 
@@ -14,7 +14,16 @@ export default class Main extends React.Component {
 
         this.setState({ currentUser })
     }
-
+    componentWillMount() {
+        var uid = firebase.auth().currentUser.uid;
+        firebase.database().ref('users/' + uid + '/myActs').on('value', function(snapshot){
+            snapshot.forEach(function(item){
+                var t = item.val().title;
+                var p = item.val().points;
+                activities.push(t + " --- " + p);
+            })
+        })
+    }
     render() {
         const { currentUser } = this.state;
         return (
@@ -76,3 +85,4 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     }
 });
+export {activities}

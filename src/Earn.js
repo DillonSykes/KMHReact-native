@@ -3,8 +3,8 @@ import { ListView } from 'react-native';
 import HeaderIcon  from './Components/HeaderIcon'
 import firebase from 'react-native-firebase'
 import { Container, Content, Button, Icon, List, ListItem, Text } from 'native-base';
-let activities = [];
-var dataToDisplay = ['x'];
+import { activities } from './Main'
+const dataToDisplay = activities;
 export default class SwipeableListExample extends Component {
     constructor(props) {
         super(props);
@@ -14,19 +14,12 @@ export default class SwipeableListExample extends Component {
             listViewData: dataToDisplay,
         };
     }
-    componentWillMount(){
-        var uid = firebase.auth().currentUser.uid;
-        firebase.database().ref('users/' + uid + '/myActs').on('value', function(snapshot){
-            snapshot.forEach(function(item){
-                var t = item.val().title;
-                var p = item.val().points;
-                activities.push(t + " --- " + p);
-            })
-
-        })
-
-
-
+    addPoints(data){
+        var regex = /[+-]?\d+(?:\.\d+)?/g;
+        var match;
+        while (match = regex.exec(str)) {
+            console.log(match[0]);
+        }
     }
     deleteRow(secId, rowId, rowMap) {
         rowMap[`${secId}${rowId}`].props.closeRow();
@@ -34,16 +27,17 @@ export default class SwipeableListExample extends Component {
         newData.splice(rowId, 1);
         this.setState({ listViewData: newData });
     }
-
     render() {
         console.log(this.state.listViewData);
+        console.log(activities);
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+        const  l = ds.cloneWithRows(this.state.listViewData);
         return (
             <Container>
                 <HeaderIcon />
                 <Content>
                     <List
-                        dataSource={this.ds.cloneWithRows(this.state.listViewData)}
+                        dataSource={l}
                         renderRow={data =>
                             <ListItem>
                                 <Text> {data} </Text>
