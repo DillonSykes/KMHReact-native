@@ -3,8 +3,8 @@ package com.kmh;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.oblador.vectoricons.VectorIconsPackage;
 import io.invertase.firebase.RNFirebasePackage;
+import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -12,6 +12,9 @@ import com.facebook.soloader.SoLoader;
 
 //Auth
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
+
+//Db
+import io.invertase.firebase.database.RNFirebaseDatabasePackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,9 +31,10 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new VectorIconsPackage(),
             new RNFirebasePackage(),
-            new RNFirebaseAuthPackage()
+            new VectorIconsPackage(),
+            new RNFirebaseAuthPackage(),
+            new RNFirebaseDatabasePackage()
       );
     }
 

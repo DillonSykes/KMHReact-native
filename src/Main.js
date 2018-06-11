@@ -1,8 +1,9 @@
 import React from 'react'
-import { StyleSheet, Platform, Image, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Platform, Image, View, TouchableOpacity } from 'react-native'
 import firebase from 'react-native-firebase'
 import MyToolBar from './Components/Header'
-import { Button, Icon } from 'react-native-elements'
+import HeaderIcon from './Components/HeaderIcon'
+import { Button, Icon, Text, Container, Content } from 'native-base'
 
 
 export default class Main extends React.Component {
@@ -17,51 +18,31 @@ export default class Main extends React.Component {
     render() {
         const { currentUser } = this.state;
         return (
-            <View>
-                <MyToolBar />
-                <View style={styles.button}>
-                <Text>
-                    Hi {currentUser && currentUser.email}!
-                </Text>
-
-                    <Button
-                        icon = {
-                            {
-                                name : 'plus',
-                                size : 15,
-                                color : 'black',
-                                type :'font-awesome',
-                            }
-                        }
-                        onPress = {() => this.props.navigation.navigate('AddActivity')}
-                        title={"Add Activity"}
-                    />
-                    <Button
-                        icon = {
-                            {
-                                name : 'money',
-                                size : 15,
-                                color : 'green',
-                                type : 'font-awesome'
-                            }
-                        }
-                        onPress = {() => this.props.navigation.navigate('Earn')}
-                        title = {"Earn"}
-                    />
-                    <Button
-                        icon = {
-                            {
-                                name : 'history',
-                                size : 15,
-                                color : 'black',
-                                type : 'font-awesome'
-                            }
-                        }
-                        onPress = {() => this.props.navigation.navigate('History')}
-                        title={"History"}
-                    />
-                </View>
-            </View>
+            <Container>
+                <HeaderIcon/>
+                <Content>
+                    <View style={styles.container}>
+                        <Text style={styles.textStyle}>
+                            Hi {currentUser && currentUser.email}!
+                        </Text>
+                        <Text style={styles.textStyle}>
+                            Welcome to KnowMyHabits here you build good habits and weed out the bad.
+                        </Text>
+                        <Button style={styles.buttonTop} rounded iconLeft onPress = {() => this.props.navigation.navigate('AddActivity')}>
+                            <Icon name = "plus" type = "FontAwesome"/>
+                            <Text>Add Activity</Text>
+                        </Button>
+                        <Button style={styles.button} rounded iconLeft onPress = {() => this.props.navigation.navigate('Earn')}>
+                            <Icon name = "money" type = "FontAwesome"/>
+                        <Text>Earn</Text>
+                        </Button>
+                        <Button style={styles.button} rounded iconLeft onPress = {() => this.props.navigation.navigate('History')}>
+                            <Icon name = "history" type = "FontAwesome"/>
+                            <Text>History</Text>
+                        </Button>
+                    </View>
+                </Content>
+            </Container>
         )
     }
 }
@@ -71,12 +52,27 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignSelf: 'center'
     },
     button: {
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-
+        flex: 1,
+        width: 250,
+        marginBottom: 50,
+        alignSelf: 'center'
+    },
+    buttonTop: {
+        flex: 1,
+        width: 250,
+        marginBottom: 50,
+        marginTop: 50,
+        alignSelf: 'center'
+    },
+    textStyle: {
+        fontSize: 20,
+        alignSelf: 'center',
+        paddingEnd: 10,
+        paddingStart: 10,
+        paddingTop: 10,
+        textAlign: 'center'
     }
-})
+});
